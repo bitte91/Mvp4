@@ -2,11 +2,10 @@ import Link from 'next/link'
 import { Ajuda } from '@/types'
 import { ArrowLeft, Phone, MessageCircle } from 'lucide-react'
 import { notFound } from 'next/navigation'
+import { getLocalData } from '@/lib/data'
 
 async function getAjuda(id: string) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/data/ajuda.json`, { cache: 'no-store' })
-  if (!res.ok) return null
-  const ajudas: Ajuda[] = await res.json()
+  const ajudas = await getLocalData<Ajuda[]>('ajuda.json');
   return ajudas.find(a => a.id === id)
 }
 
@@ -93,7 +92,7 @@ export default async function AjudaDetalhe({ params }: { params: { id: string } 
         </div>
 
         <div className="flex gap-4">
-          
+          <a
             href={`https://wa.me/55${whatsappNumber}`}
             target="_blank"
             rel="noopener noreferrer"
@@ -102,7 +101,7 @@ export default async function AjudaDetalhe({ params }: { params: { id: string } 
             <MessageCircle className="w-5 h-5 mr-2" />
             Conversar no WhatsApp
           </a>
-          
+          <a
             href={`tel:${ajuda.telefone}`}
             className="flex-1 bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors font-semibold text-center flex items-center justify-center"
           >

@@ -2,11 +2,10 @@ import Link from 'next/link'
 import { Aviso } from '@/types'
 import { ArrowLeft, Eye, Calendar, User } from 'lucide-react'
 import { notFound } from 'next/navigation'
+import { getLocalData } from '@/lib/data'
 
 async function getAviso(id: string) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/data/avisos.json`, { cache: 'no-store' })
-  if (!res.ok) return null
-  const avisos: Aviso[] = await res.json()
+  const avisos = await getLocalData<Aviso[]>('avisos.json');
   return avisos.find(a => a.id === id)
 }
 

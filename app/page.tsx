@@ -1,12 +1,16 @@
 import Link from 'next/link'
-import { Bell, HandHelping, Briefcase, AlertTriangle } from 'lucide-react'
+import { Bell, Handshake, Briefcase, AlertTriangle } from 'lucide-react'
+import { getLocalData } from '@/lib/data'
+import type { Aviso, Ajuda, Servico, Alerta } from '@/types'
 
 async function getData() {
-  const avisos = await fetch(`${process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/data/avisos.json`, { cache: 'no-store' }).then(r => r.json()).catch(() => [])
-  const ajuda = await fetch(`${process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/data/ajuda.json`, { cache: 'no-store' }).then(r => r.json()).catch(() => [])
-  const servicos = await fetch(`${process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/data/servicos.json`, { cache: 'no-store' }).then(r => r.json()).catch(() => [])
-  const alertas = await fetch(`${process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/data/alertas.json`, { cache: 'no-store' }).then(r => r.json()).catch(() => [])
-  
+  const [avisos, ajuda, servicos, alertas] = await Promise.all([
+    getLocalData<Aviso[]>('avisos.json'),
+    getLocalData<Ajuda[]>('ajuda.json'),
+    getLocalData<Servico[]>('servicos.json'),
+    getLocalData<Alerta[]>('alertas.json'),
+  ]);
+
   return { avisos, ajuda, servicos, alertas }
 }
 
@@ -26,7 +30,7 @@ export default async function Home() {
     {
       title: 'Ajuda',
       description: 'Pedidos de ajuda entre vizinhos',
-      icon: HandHelping,
+      icon: Handshake,
       href: '/ajuda',
       count: ajuda.length,
       color: 'bg-success-500', // Alterado para usar a nova cor success

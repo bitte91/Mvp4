@@ -2,11 +2,10 @@ import Link from 'next/link'
 import { Servico } from '@/types'
 import { ArrowLeft, Star, CheckCircle, Phone, MessageCircle } from 'lucide-react'
 import { notFound } from 'next/navigation'
+import { getLocalData } from '@/lib/data'
 
 async function getServico(id: string) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/data/servicos.json`, { cache: 'no-store' })
-  if (!res.ok) return null
-  const servicos: Servico[] = await res.json()
+  const servicos = await getLocalData<Servico[]>('servicos.json');
   return servicos.find(s => s.id === id)
 }
 
@@ -70,7 +69,7 @@ export default async function ServicoDetalhe({ params }: { params: { id: string 
         </div>
 
         <div className="flex gap-4">
-          
+          <a
             href={`https://wa.me/${servico.whatsapp}`}
             target="_blank"
             rel="noopener noreferrer"
@@ -79,7 +78,7 @@ export default async function ServicoDetalhe({ params }: { params: { id: string 
             <MessageCircle className="w-5 h-5 mr-2" />
             WhatsApp
           </a>
-          
+          <a
             href={`tel:${servico.telefone}`}
             className="flex-1 bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors font-semibold text-center flex items-center justify-center"
           >

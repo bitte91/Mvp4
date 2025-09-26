@@ -1,11 +1,10 @@
 import Link from 'next/link'
 import { Alerta } from '@/types'
 import { Plus, MapPin, Calendar } from 'lucide-react'
+import { getLocalData } from '@/lib/data'
 
 async function getAlertas() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/data/alertas.json`, { cache: 'no-store' })
-  if (!res.ok) return []
-  return res.json()
+  return getLocalData<Alerta[]>('alertas.json');
 }
 
 const nivelColors: Record<string, string> = {
@@ -53,15 +52,15 @@ export default async function AlertasPage() {
                   {tipoLabels[alerta.tipo]}
                 </span>
               </div>
-              
+
               <h3 className="text-xl font-bold text-gray-900 mb-2 line-clamp-2">
                 {alerta.titulo}
               </h3>
-              
+
               <p className="text-gray-600 mb-4 line-clamp-3">
                 {alerta.descricao}
               </p>
-              
+
               <div className="space-y-2 text-sm text-gray-500 mt-auto pt-4 border-t border-gray-100">
                 <div className="flex items-center">
                   <MapPin className="w-4 h-4 mr-2" />

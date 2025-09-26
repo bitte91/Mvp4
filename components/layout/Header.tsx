@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Menu, X, Home, Bell, HandHelping, Briefcase, AlertTriangle, Map } from 'lucide-react'
+import { Menu, X, Home, Bell, Handshake, Briefcase, AlertTriangle, Map } from 'lucide-react'
 import { useState } from 'react'
 
 export default function Header() {
@@ -10,7 +10,7 @@ export default function Header() {
   const navItems = [
     { href: '/', label: 'Home', icon: Home },
     { href: '/avisos', label: 'Avisos', icon: Bell },
-    { href: '/ajuda', label: 'Ajuda', icon: HandHelping },
+    { href: '/ajuda', label: 'Ajuda', icon: Handshake },
     { href: '/servicos', label: 'Serviços', icon: Briefcase },
     { href: '/alertas', label: 'Alertas', icon: AlertTriangle },
     { href: '/mapa', label: 'Mapa', icon: Map },

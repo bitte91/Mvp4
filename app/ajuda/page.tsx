@@ -3,33 +3,31 @@ import { Ajuda } from '@/types'
 import { Plus, Phone } from 'lucide-react'
 import { getLocalData } from '@/lib/data'
 
-async function getAjudas() {
-  return getLocalData<Ajuda[]>('ajuda.json');
+async function getAjudas(): Promise<Ajuda[]> {
+  return getLocalData<Ajuda[]>('ajuda.json')
 }
 
 const prioridadeColors: Record<string, string> = {
   baixa: 'bg-gray-100 text-gray-800',
-  media: 'bg-warning-100 text-warning-800', // Alterado para usar a nova cor warning
+  media: 'bg-warning-100 text-warning-800',
   alta: 'bg-orange-100 text-orange-800',
-  urgente: 'bg-danger-100 text-danger-800', // Alterado para usar a nova cor danger
+  urgente: 'bg-danger-100 text-danger-800'
 }
-
 const statusColors: Record<string, string> = {
-  aberto: 'bg-primary-100 text-primary-800', // Alterado para usar a nova cor primary
+  aberto: 'bg-primary-100 text-primary-800',
   em_andamento: 'bg-purple-100 text-purple-800',
-  concluido: 'bg-success-100 text-success-800', // Alterado para usar a nova cor success
-  cancelado: 'bg-gray-100 text-gray-800',
+  concluido: 'bg-success-100 text-success-800',
+  cancelado: 'bg-gray-100 text-gray-800'
 }
-
 const statusLabels: Record<string, string> = {
   aberto: 'Aberto',
   em_andamento: 'Em Andamento',
   concluido: 'Concluído',
-  cancelado: 'Cancelado',
+  cancelado: 'Cancelado'
 }
 
 export default async function AjudaPage() {
-  const ajudas: Ajuda[] = await getAjudas()
+  const ajudas = await getAjudas()
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -40,7 +38,7 @@ export default async function AjudaPage() {
         </div>
         <Link
           href="/ajuda/nova"
-          className="inline-flex items-center px-4 py-2 bg-success-600 text-white rounded-lg hover:bg-success-700 transition-colors" // Alterado para usar a nova cor success
+          className="inline-flex items-center px-4 py-2 bg-success-600 text-white rounded-lg hover:bg-success-700 transition-colors"
         >
           <Plus className="w-5 h-5 mr-2" />
           Pedir Ajuda
@@ -48,7 +46,7 @@ export default async function AjudaPage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {ajudas.map((ajuda) => (
+        {ajudas.map(ajuda => (
           <Link key={ajuda.id} href={`/ajuda/${ajuda.id}`}>
             <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 border border-gray-100 h-full">
               <div className="flex justify-between items-start mb-3">
@@ -59,15 +57,12 @@ export default async function AjudaPage() {
                   {statusLabels[ajuda.status]}
                 </span>
               </div>
-
               <h3 className="text-xl font-bold text-gray-900 mb-2 line-clamp-2">
                 {ajuda.titulo}
               </h3>
-
               <p className="text-gray-600 mb-4 line-clamp-3">
                 {ajuda.descricao}
               </p>
-
               <div className="flex items-center justify-between text-sm text-gray-500 mt-auto pt-4 border-t border-gray-100">
                 <span className="font-semibold">{ajuda.solicitante}</span>
                 <span className="flex items-center text-green-600">

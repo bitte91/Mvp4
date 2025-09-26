@@ -1,0 +1,32 @@
+[
+  {
+    "id": "sv-001",
+    "nome": "Carlos Silva - Eletricista",
+    "tipo_servico": "Elétrica Residencial",
+    "descricao": "Serviços elétricos em geral: troca de disjuntores, instalação de tomadas, ventiladores e chuveiros.",
+    "telefone": "(19) 99999-8888",
+    "whatsapp": "5519999998888",
+    "avaliacao": 4.8,
+    "verificado": true
+  },
+  {
+    "id": "sv-002",
+    "nome": "Mariana Rocha - Manicure",
+    "tipo_servico": "Estética e Beleza",
+    "descricao": "Manicure e pedicure a domicílio. Atendimento de segunda a sábado.",
+    "telefone": "(19) 98888-7777",
+    "whatsapp": "5519988887777",
+    "avaliacao": 5.0,
+    "verificado": true
+  },
+  {
+    "id": "sv-003",
+    "nome": "Pedro Alves - Encanador",
+    "tipo_servico": "Hidráulica",
+    "descricao": "Reparos em geral, desentupimento, instalação de registros e torneiras.",
+    "telefone": "(19) 97777-6666",
+    "whatsapp": "5519977776666",
+    "avaliacao": 4.5,
+    "verificado": false
+  }
+]

@@ -1,0 +1,44 @@
+[
+  {
+    "id": "al-001",
+    "tipo": "seguranca",
+    "titulo": "Movimento suspeito",
+    "descricao": "Pessoa em moto circulando lentamente pela Rua 3 às 22h. Atenção vizinhos!",
+    "localizacao": {
+      "descricao": "Rua 3 - Praça Central",
+      "lat": -22.9035,
+      "lng": -43.2096
+    },
+    "nivel": "atencao",
+    "status": "ativo",
+    "data": "2025-09-25"
+  },
+  {
+    "id": "al-002",
+    "tipo": "transito",
+    "titulo": "Buraco grande na pista",
+    "descricao": "Buraco profundo na Rua 7, próximo ao nº 250. Cuidado ao passar!",
+    "localizacao": {
+      "descricao": "Rua 7, 250",
+      "lat": -22.9045,
+      "lng": -43.2106
+    },
+    "nivel": "alerta",
+    "status": "ativo",
+    "data": "2025-09-24"
+  },
+  {
+    "id": "al-003",
+    "tipo": "utilidade_publica",
+    "titulo": "Falta de água programada",
+    "descricao": "Manutenção da rede de água amanhã das 8h às 14h. Reservar água.",
+    "localizacao": {
+      "descricao": "Bairro todo",
+      "lat": -22.9040,
+      "lng": -43.2100
+    },
+    "nivel": "info",
+    "status": "ativo",
+    "data": "2025-09-26"
+  }
+]

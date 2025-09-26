@@ -1,0 +1,32 @@
+[
+  {
+    "id": "aj-001",
+    "titulo": "Trocar lâmpada alta no corredor",
+    "descricao": "Preciso de ajuda para trocar lâmpada no teto alto (3m). Tenho a lâmpada, falta escada.",
+    "solicitante": "João Pedro - Ap 203",
+    "telefone": "(19) 98765-4321",
+    "categoria": "reparo",
+    "prioridade": "media",
+    "status": "aberto"
+  },
+  {
+    "id": "aj-002",
+    "titulo": "Ajuda com mudança pequena",
+    "descricao": "Preciso mover alguns móveis pequenos do ap 101 para o 305. Tenho carrinho.",
+    "solicitante": "Ana Costa",
+    "telefone": "(19) 99887-7665",
+    "categoria": "mudanca",
+    "prioridade": "baixa",
+    "status": "aberto"
+  },
+  {
+    "id": "aj-003",
+    "titulo": "Companhia para idosa às terças",
+    "descricao": "Minha mãe precisa de companhia às terças-feiras pela manhã. Apenas conversar e tomar café.",
+    "solicitante": "Roberto Lima",
+    "telefone": "(19) 97654-3210",
+    "categoria": "idosos",
+    "prioridade": "media",
+    "status": "em_andamento"
+  }
+]

@@ -1,0 +1,29 @@
+[
+  {
+    "id": "av-001",
+    "titulo": "Reunião da Associação de Moradores",
+    "descricao": "Domingo às 16h no salão comunitário. Pauta: obras na praça e segurança.",
+    "autor": "Maria Silva",
+    "categoria": "evento",
+    "data": "2025-09-28",
+    "visualizacoes": 47
+  },
+  {
+    "id": "av-002",
+    "titulo": "Feira de Artesanato no fim de semana",
+    "descricao": "Sábado e domingo das 9h às 17h na Praça Central. Artesanato local e comidas típicas.",
+    "autor": "José Santos",
+    "categoria": "evento",
+    "data": "2025-09-27",
+    "visualizacoes": 32
+  },
+  {
+    "id": "av-003",
+    "titulo": "Interdição temporária da Rua 5",
+    "descricao": "Obras de saneamento entre os dias 26 e 28. Buscar rotas alternativas.",
+    "autor": "Prefeitura",
+    "categoria": "obra",
+    "data": "2025-09-26",
+    "visualizacoes": 89
+  }
+]

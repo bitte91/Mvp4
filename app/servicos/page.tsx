@@ -1,11 +1,10 @@
 import Link from 'next/link'
 import { Servico } from '@/types'
 import { Plus, Star, CheckCircle } from 'lucide-react'
+import { getLocalData } from '@/lib/data'
 
 async function getServicos() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/data/servicos.json`, { cache: 'no-store' })
-  if (!res.ok) return []
-  return res.json()
+  return getLocalData<Servico[]>('servicos.json');
 }
 
 export default async function ServicosPage() {
@@ -39,15 +38,15 @@ export default async function ServicosPage() {
                   <CheckCircle className="w-5 h-5 text-blue-600 flex-shrink-0" />
                 )}
               </div>
-              
+
               <p className="text-purple-600 font-semibold mb-3">
                 {servico.tipo_servico}
               </p>
-              
+
               <p className="text-gray-600 mb-4 line-clamp-3">
                 {servico.descricao}
               </p>
-              
+
               <div className="flex items-center text-yellow-500 mt-auto pt-4 border-t border-gray-100">
                 <Star className="w-5 h-5 fill-current" />
                 <span className="ml-2 text-lg font-bold text-gray-900">{servico.avaliacao.toFixed(1)}</span>

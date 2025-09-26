@@ -1,11 +1,10 @@
 import Link from 'next/link'
 import { Aviso } from '@/types'
 import { Eye, Plus, Calendar } from 'lucide-react'
+import { getLocalData } from '@/lib/data'
 
 async function getAvisos() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/data/avisos.json`, { cache: 'no-store' })
-  if (!res.ok) return []
-  return res.json()
+  return getLocalData<Aviso[]>('avisos.json');
 }
 
 const categoriaColors: Record<string, string> = {
@@ -54,15 +53,15 @@ export default async function AvisosPage() {
                   {aviso.visualizacoes}
                 </div>
               </div>
-              
+
               <h3 className="text-xl font-bold text-gray-900 mb-2 line-clamp-2">
                 {aviso.titulo}
               </h3>
-              
+
               <p className="text-gray-600 mb-4 line-clamp-3">
                 {aviso.descricao}
               </p>
-              
+
               <div className="flex justify-between items-center text-sm text-gray-500 mt-auto">
                 <span className="flex items-center">
                   <Calendar className="w-4 h-4 mr-1" />

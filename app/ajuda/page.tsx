@@ -1,11 +1,10 @@
 import Link from 'next/link'
 import { Ajuda } from '@/types'
 import { Plus, Phone } from 'lucide-react'
+import { getLocalData } from '@/lib/data'
 
 async function getAjudas() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/data/ajuda.json`, { cache: 'no-store' })
-  if (!res.ok) return []
-  return res.json()
+  return getLocalData<Ajuda[]>('ajuda.json');
 }
 
 const prioridadeColors: Record<string, string> = {
@@ -60,15 +59,15 @@ export default async function AjudaPage() {
                   {statusLabels[ajuda.status]}
                 </span>
               </div>
-              
+
               <h3 className="text-xl font-bold text-gray-900 mb-2 line-clamp-2">
                 {ajuda.titulo}
               </h3>
-              
+
               <p className="text-gray-600 mb-4 line-clamp-3">
                 {ajuda.descricao}
               </p>
-              
+
               <div className="flex items-center justify-between text-sm text-gray-500 mt-auto pt-4 border-t border-gray-100">
                 <span className="font-semibold">{ajuda.solicitante}</span>
                 <span className="flex items-center text-green-600">

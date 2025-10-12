@@ -12,6 +12,6 @@ export async function getLocalData<T>(fileName: string): Promise<T> {
     // Depending on the use case, you might want to return a default value
     // or re-throw the error. For this case, we'll return an empty array
     // to prevent the build from crashing on non-existent or malformed data.
-    return [] as T;
+    throw error;
   }
 }

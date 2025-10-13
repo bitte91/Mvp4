@@ -68,6 +68,16 @@ export default async function Home() {
         </p>
       </div>
 
+      {/* CTA Section */}
+      <div className="mb-12 text-center">
+        <Link
+          href="/mapa"
+          className="inline-flex items-center px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors text-lg font-semibold" // Alterado para usar a nova cor primary
+        >
+          Ver Mapa da Comunidade
+        </Link>
+      </div>
+
       {/* Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
         {cards.map((card) => (
@@ -89,10 +99,10 @@ export default async function Home() {
                     {card.description}
                   </p>
                   <div className="flex items-center space-x-2">
-                    <span className="text-3xl font-bold text-blue-600">
+                    <span className="text-3xl font-bold text-gray-800">
                       {card.count}
                     </span>
-                    <span className="text-gray-500">
+                    <span className="text-gray-600">
                       {card.count === 1 ? 'item' : 'itens'}
                     </span>
                   </div>
@@ -101,16 +111,6 @@ export default async function Home() {
             </div>
           </Link>
         ))}
-      </div>
-
-      {/* CTA Section */}
-      <div className="mt-12 text-center">
-        <Link
-          href="/mapa"
-          className="inline-flex items-center px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors text-lg font-semibold" // Alterado para usar a nova cor primary
-        >
-          Ver Mapa da Comunidade
-        </Link>
       </div>
     </div>
   )

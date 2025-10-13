@@ -1,117 +1,66 @@
-import Link from 'next/link'
-import { Bell, Handshake, Briefcase, AlertTriangle } from 'lucide-react'
-import { getLocalData } from '@/lib/data'
-import type { Aviso, Ajuda, Servico, Alerta } from '@/types'
+import Link from 'next/link';
+import { Search, Store, Briefcase, MessageSquare, Heart, Shield, Map } from 'lucide-react';
 
-async function getData() {
-  const [avisos, ajuda, servicos, alertas] = await Promise.all([
-    getLocalData<Aviso[]>('avisos.json'),
-    getLocalData<Ajuda[]>('ajuda.json'),
-    getLocalData<Servico[]>('servicos.json'),
-    getLocalData<Alerta[]>('alertas.json'),
-  ]);
+// Dados mockados para os atalhos
+const shortcuts = [
+  { href: '/comercio', label: 'Comércio', icon: Store },
+  { href: '/servicos', label: 'Serviços', icon: Briefcase },
+  { href: '/mural', label: 'Mural', icon: MessageSquare },
+  { href: '/solidaria', label: 'Ajudar', icon: Heart },
+  { href: '/seguranca', label: 'Segurança', icon: Shield },
+  { href: '/mapa', label: 'Mapa', icon: Map, color: 'bg-accent' },
+];
 
-  return { avisos, ajuda, servicos, alertas }
-}
-
-export default async function Home() {
-  const { avisos, ajuda, servicos, alertas } = await getData()
-
-  const cards = [
-    {
-      title: 'Avisos',
-      description: 'Comunicados e informações da comunidade',
-      icon: Bell,
-      href: '/avisos',
-      count: avisos.length,
-      color: 'bg-primary-500', // Alterado para usar a nova cor primary
-      hoverColor: 'hover:bg-primary-600' // Alterado para usar a nova cor primary
-    },
-    {
-      title: 'Ajuda',
-      description: 'Pedidos de ajuda entre vizinhos',
-      icon: Handshake,
-      href: '/ajuda',
-      count: ajuda.length,
-      color: 'bg-success-500', // Alterado para usar a nova cor success
-      hoverColor: 'hover:bg-success-600' // Alterado para usar a nova cor success
-    },
-    {
-      title: 'Serviços',
-      description: 'Profissionais do bairro',
-      icon: Briefcase,
-      href: '/servicos',
-      count: servicos.length,
-      color: 'bg-secondary-500', // Alterado para usar a nova cor secondary
-      hoverColor: 'hover:bg-secondary-600' // Alterado para usar a nova cor secondary
-    },
-    {
-      title: 'Alertas',
-      description: 'Avisos importantes de segurança',
-      icon: AlertTriangle,
-      href: '/alertas',
-      count: alertas.length,
-      color: 'bg-danger-500', // Alterado para usar a nova cor danger
-      hoverColor: 'hover:bg-danger-600' // Alterado para usar a nova cor danger
-    },
-  ]
-
+export default function Home() {
   return (
-    <div className="container mx-auto px-4 py-8">
-      {/* Hero Section */}
-      <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-          Bem-vindo ao Conecta Bairro
-        </h1>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          Conectando vizinhos e fortalecendo nossa comunidade
-        </p>
+    <div className="p-4">
+      {/* Header de boas-vindas */}
+      <header className="flex items-center justify-between mb-6">
+        <div>
+          <h1 className="text-2xl font-display font-bold text-primary">Olá, Vizinho!</h1>
+          <p className="text-gray-500">O que você precisa hoje?</p>
+        </div>
+        {/* Placeholder para o Avatar do Usuário */}
+        <div className="w-12 h-12 bg-secondary rounded-full"></div>
+      </header>
+
+      {/* Barra de Busca */}
+      <div className="relative mb-8">
+        <input
+          type="text"
+          placeholder="Buscar no bairro..."
+          className="w-full h-12 pl-12 pr-4 rounded-lg border border-gray-200 bg-white focus:ring-2 focus:ring-primary focus:outline-none shadow-soft"
+        />
+        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
       </div>
 
-      {/* CTA Section */}
-      <div className="mb-12 text-center">
-        <Link
-          href="/mapa"
-          className="inline-flex items-center px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors text-lg font-semibold" // Alterado para usar a nova cor primary
-        >
-          Ver Mapa da Comunidade
-        </Link>
-      </div>
-
-      {/* Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-        {cards.map((card) => (
-          <Link
-            key={card.href}
-            href={card.href}
-            className="group"
-          >
-            <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 p-6 border border-gray-100">
-              <div className="flex items-start justify-between">
-                <div className="flex-1">
-                  <div className={`inline-flex p-3 rounded-lg ${card.color} ${card.hoverColor} transition-colors mb-4`}>
-                    <card.icon className="w-6 h-6 text-white" />
-                  </div>
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                    {card.title}
-                  </h2>
-                  <p className="text-gray-600 mb-4">
-                    {card.description}
-                  </p>
-                  <div className="flex items-center space-x-2">
-                    <span className="text-3xl font-bold text-gray-800">
-                      {card.count}
-                    </span>
-                    <span className="text-gray-600">
-                      {card.count === 1 ? 'item' : 'itens'}
-                    </span>
-                  </div>
-                </div>
+      {/* Atalhos Rápidos */}
+      <section className="mb-8">
+        <div className="grid grid-cols-3 gap-4 text-center">
+          {shortcuts.map((shortcut) => (
+            <Link key={shortcut.href} href={shortcut.href} className="flex flex-col items-center p-3 bg-white rounded-lg shadow-soft hover:bg-secondary transition-colors hover:-translate-y-1 transform duration-200">
+              <div className={`w-14 h-14 mb-2 flex items-center justify-center ${shortcut.color || 'bg-primary'} text-white rounded-full`}>
+                <shortcut.icon className="w-7 h-7" />
               </div>
-            </div>
-          </Link>
-        ))}
-      </div>
+              <span className="text-sm font-semibold text-primary">{shortcut.label}</span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Feed Misto de Destaques */}
+      <section>
+        <h2 className="text-xl font-display font-bold text-primary mb-4">Destaques do Bairro</h2>
+        <div className="space-y-4">
+          {/* Placeholders para cards futuros */}
+          <div className="h-28 bg-white rounded-lg shadow-soft p-4 flex items-center justify-center">
+            <p className="text-gray-400 text-sm">Card de destaque (Mural)...</p>
+          </div>
+          <div className="h-28 bg-white rounded-lg shadow-soft p-4 flex items-center justify-center">
+            <p className="text-gray-400 text-sm">Card de destaque (Comércio)...</p>
+          </div>
+        </div>
+      </section>
     </div>
-  )
+  );
 }

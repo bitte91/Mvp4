@@ -22,42 +22,37 @@ const config = {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        background: "#F7F7F7", // cinza-claro neutro
+        foreground: "#1B4965", // azul-petróleo para texto principal
         primary: {
-          DEFAULT: "#3B82F6", // Alterado de #2563eb para #3B82F6 (blue-500)
-          foreground: "#ffffff",
+          DEFAULT: "#1B4965", // azul-petróleo
+          foreground: "#FFFFFF",
         },
         secondary: {
-          DEFAULT: "#F97316", // Adicionado #F97316 (orange-500)
-          foreground: "#ffffff",
-        },
-        success: {
-          DEFAULT: "#22C55E", // Adicionado #22C55E (green-500)
-          foreground: "#ffffff",
-        },
-        warning: {
-          DEFAULT: "#F97316", // orange-500 para alertas
-          foreground: "#ffffff",
-        },
-        danger: {
-          DEFAULT: "#EF4444", // Adicionado #EF4444 (red-500)
-          foreground: "#ffffff",
-        },
-        muted: {
-          DEFAULT: "#F8FAFC", // Alterado para slate-50
-          foreground: "#64748B", // slate-500
+          DEFAULT: "#A2D2B8", // verde-claro
+          foreground: "#1B4965", // azul-petróleo para texto
         },
         accent: {
-          DEFAULT: "#f1f5f9",
-          foreground: "#0F172A", // slate-900
+          DEFAULT: "#FFD166", // amarelo destaque
+          foreground: "#1B4965", // azul-petróleo para texto
+        },
+        muted: {
+          DEFAULT: "#E2E8F0", // um cinza um pouco mais escuro para fundos suaves
+          foreground: "#64748B",
         },
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        lg: "16px",
+        md: "12px",
+        sm: "8px",
       },
+      fontFamily: {
+        sans: ["Inter", "sans-serif"],
+        display: ["Poppins", "sans-serif"],
+      },
+      boxShadow: {
+        'soft': '0 4px 12px rgba(0, 0, 0, 0.1)',
+      }
     },
   },
   plugins: [require("tailwindcss-animate")],

@@ -1,11 +1,20 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Poppins, Inter } from "next/font/google";
 import "./globals.css";
 import 'leaflet/dist/leaflet.css';
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+import { BottomNav } from "@/components/layout/BottomNav";
+import { cn } from "@/lib/utils";
 
-const inter = Inter({ subsets: ["latin"] });
+const fontSans = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
+
+const fontDisplay = Poppins({
+  subsets: ["latin"],
+  weight: ["600", "700"],
+  variable: "--font-display",
+});
 
 export const metadata: Metadata = {
   title: "Conecta Bairro - Sua vizinhança conectada",
@@ -14,7 +23,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#2563eb",
+  themeColor: "#1B4965", // Atualizado para a nova cor primária
 };
 
 export default function RootLayout({
@@ -24,10 +33,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${inter.className} flex flex-col min-h-screen`}>
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+      <body className={cn("min-h-screen bg-background font-sans antialiased", fontSans.variable, fontDisplay.variable)}>
+        <main className="relative pb-16">{children}</main>
+        <BottomNav />
       </body>
     </html>
   );

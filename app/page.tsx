@@ -1,66 +1,90 @@
 import Link from 'next/link';
-import { Search, Store, Briefcase, MessageSquare, Heart, Shield, Map } from 'lucide-react';
+import { Search, Store, Briefcase, MessageSquare, Heart, Shield, Map, ChevronRight, Building, Sparkles, Newspaper } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 
-// Dados mockados para os atalhos
 const shortcuts = [
-  { href: '/comercio', label: 'Comércio', icon: Store },
-  { href: '/servicos', label: 'Serviços', icon: Briefcase },
-  { href: '/mural', label: 'Mural', icon: MessageSquare },
-  { href: '/solidaria', label: 'Ajudar', icon: Heart },
-  { href: '/seguranca', label: 'Segurança', icon: Shield },
-  { href: '/mapa', label: 'Mapa', icon: Map, color: 'bg-accent' },
+  { href: '/comercio', label: 'Comércio', icon: Store, color: 'bg-secondary/20 text-secondary-dark' },
+  { href: '/servicos', label: 'Serviços', icon: Briefcase, color: 'bg-accent/20 text-accent-dark' },
+  { href: '/mural', label: 'Mural', icon: MessageSquare, color: 'bg-primary/10 text-primary-dark' },
+  { href: '/solidaria', label: 'Ajudar', icon: Heart, color: 'bg-danger/10 text-danger' },
+  { href: '/mapa', label: 'Mapa', icon: Map, color: 'bg-neutral-200 text-neutral-800' },
 ];
+
+const highlights = [
+  { title: 'Novo Café na Praça', description: 'Venha conhecer o novo point do bairro!', icon: Sparkles, category: 'Comércio' },
+  { title: 'Vagas de Emprego', description: 'Oportunidades na padaria da esquina.', icon: Briefcase, category: 'Serviços' },
+  { title: 'Festa Junina', description: 'Participe da nossa tradicional festa.', icon: Newspaper, category: 'Mural' }
+]
 
 export default function Home() {
   return (
-    <div className="p-4">
+    <div className="pb-24 bg-neutral-100">
       {/* Header de boas-vindas */}
-      <header className="flex items-center justify-between mb-6">
-        <div>
-          <h1 className="text-2xl font-display font-bold text-primary">Olá, Vizinho!</h1>
-          <p className="text-gray-500">O que você precisa hoje?</p>
+      <header className="bg-primary text-white p-6 rounded-b-3xl shadow-lg mb-8">
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h1 className="text-3xl font-display font-bold">Olá, Vizinho!</h1>
+            <p className="text-primary-foreground/80">Bem-vindo(a) ao Conecta Bairro.</p>
+          </div>
+          <div className="w-14 h-14 bg-primary-light rounded-full border-2 border-white"></div>
         </div>
-        {/* Placeholder para o Avatar do Usuário */}
-        <div className="w-12 h-12 bg-secondary rounded-full"></div>
+
+        {/* Barra de Busca */}
+        <div className="relative">
+          <input
+            type="text"
+            placeholder="Buscar no bairro..."
+            className="w-full h-14 pl-14 pr-4 rounded-xl border-none bg-primary-light text-white placeholder-primary-foreground/70 focus:ring-2 focus:ring-accent focus:outline-none"
+          />
+          <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-6 h-6 text-primary-foreground/70" />
+        </div>
       </header>
 
-      {/* Barra de Busca */}
-      <div className="relative mb-8">
-        <input
-          type="text"
-          placeholder="Buscar no bairro..."
-          className="w-full h-12 pl-12 pr-4 rounded-lg border border-gray-200 bg-white focus:ring-2 focus:ring-primary focus:outline-none shadow-soft"
-        />
-        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-      </div>
+      <main className="px-5">
+        {/* Atalhos Rápidos */}
+        <section className="mb-10">
+          <h2 className="text-xl font-display font-bold text-neutral-800 mb-4">Acesso Rápido</h2>
+          <div className="grid grid-cols-5 gap-3 text-center">
+            {shortcuts.map((shortcut) => (
+              <Link key={shortcut.href} href={shortcut.href} className="flex flex-col items-center justify-center p-2 group">
+                <div className={`w-16 h-16 mb-2 flex items-center justify-center ${shortcut.color} rounded-2xl transform transition-transform duration-300 group-hover:scale-110`}>
+                  <shortcut.icon className="w-8 h-8" />
+                </div>
+                <span className="text-xs font-semibold text-neutral-700">{shortcut.label}</span>
+              </Link>
+            ))}
+          </div>
+        </section>
 
-      {/* Atalhos Rápidos */}
-      <section className="mb-8">
-        <div className="grid grid-cols-3 gap-4 text-center">
-          {shortcuts.map((shortcut) => (
-            <Link key={shortcut.href} href={shortcut.href} className="flex flex-col items-center p-3 bg-white rounded-lg shadow-soft hover:bg-secondary transition-colors hover:-translate-y-1 transform duration-200">
-              <div className={`w-14 h-14 mb-2 flex items-center justify-center ${shortcut.color || 'bg-primary'} text-white rounded-full`}>
-                <shortcut.icon className="w-7 h-7" />
-              </div>
-              <span className="text-sm font-semibold text-primary">{shortcut.label}</span>
+        {/* Destaques do Bairro */}
+        <section>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-xl font-display font-bold text-neutral-800">Destaques</h2>
+            <Link href="/destaques" className="flex items-center text-sm font-bold text-primary">
+              Ver todos <ChevronRight className="w-4 h-4 ml-1" />
             </Link>
-          ))}
-        </div>
-      </section>
+          </div>
 
-      {/* Feed Misto de Destaques */}
-      <section>
-        <h2 className="text-xl font-display font-bold text-primary mb-4">Destaques do Bairro</h2>
-        <div className="space-y-4">
-          {/* Placeholders para cards futuros */}
-          <div className="h-28 bg-white rounded-lg shadow-soft p-4 flex items-center justify-center">
-            <p className="text-gray-400 text-sm">Card de destaque (Mural)...</p>
+          <div className="flex space-x-4 overflow-x-auto pb-4 -mx-5 px-5">
+            {highlights.map((item, index) => (
+              <div key={index} className="min-w-[280px] flex-shrink-0">
+                <Card className="overflow-hidden">
+                  <CardHeader className="p-0">
+                    <div className="h-32 bg-secondary flex items-center justify-center">
+                      <item.icon className="w-12 h-12 text-white" />
+                    </div>
+                  </CardHeader>
+                  <CardContent className="p-4">
+                    <p className="text-xs font-bold text-primary mb-1">{item.category}</p>
+                    <h3 className="font-bold font-display text-lg text-neutral-900 mb-2">{item.title}</h3>
+                    <p className="text-sm text-neutral-600">{item.description}</p>
+                  </CardContent>
+                </Card>
+              </div>
+            ))}
           </div>
-          <div className="h-28 bg-white rounded-lg shadow-soft p-4 flex items-center justify-center">
-            <p className="text-gray-400 text-sm">Card de destaque (Comércio)...</p>
-          </div>
-        </div>
-      </section>
+        </section>
+      </main>
     </div>
   );
 }

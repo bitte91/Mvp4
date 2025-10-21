@@ -10,31 +10,38 @@ const navItems = [
   { href: '/comercio', label: 'Comércio', icon: Store },
   { href: '/servicos', label: 'Serviços', icon: Briefcase },
   { href: '/mural', label: 'Mural', icon: MessageSquare },
-  { href: '/solidaria', label: 'Solidária', icon: Heart },
-  { href: '/seguranca', label: 'Segurança', icon: Shield },
+  { href: '/solidaria', label: 'Ajudar', icon: Heart },
 ];
 
 export function BottomNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 h-16 bg-white shadow-soft z-50">
-      <div className="flex justify-around items-center h-full max-w-lg mx-auto">
+    <nav className="fixed bottom-4 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-lg h-20 bg-primary/90 backdrop-blur-sm rounded-2xl shadow-lg z-50">
+      <div className="flex justify-around items-center h-full">
         {navItems.map((item) => {
           const isActive = pathname === item.href;
           return (
-            <Link key={item.href} href={item.href} className="flex flex-col items-center justify-center w-full h-full">
+            <Link
+              key={item.href}
+              href={item.href}
+              className="flex flex-col items-center justify-center w-full h-full min-w-[44px] min-h-[44px] relative"
+            >
+              <div className={cn(
+                "absolute top-0 w-10 h-1 bg-transparent rounded-b-full",
+                isActive && "bg-accent"
+              )} />
               <item.icon
                 className={cn(
-                  'w-6 h-6 mb-1 transition-colors',
-                  isActive ? 'text-primary' : 'text-gray-400'
+                  'w-7 h-7 mb-1 transition-all duration-300',
+                  isActive ? 'text-accent' : 'text-primary-foreground/70'
                 )}
                 strokeWidth={isActive ? 2.5 : 2}
               />
               <span
                 className={cn(
-                  'text-xs font-medium transition-colors',
-                  isActive ? 'text-primary' : 'text-gray-500'
+                  'text-xs font-bold transition-all duration-300',
+                  isActive ? 'text-white' : 'text-primary-foreground/70'
                 )}
               >
                 {item.label}

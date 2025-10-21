@@ -13,4 +13,12 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: theme('fontFamily.display');
   }
+
+  :focus {
+    @apply outline-none;
+  }
+
+  :focus-visible {
+    @apply ring-2 ring-blue-500 ring-offset-2;
+  }
 }

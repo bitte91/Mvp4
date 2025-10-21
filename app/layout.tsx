@@ -34,7 +34,10 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={cn("min-h-screen bg-background font-sans antialiased", fontSans.variable, fontDisplay.variable)}>
-        <main className="relative pb-16">{children}</main>
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-50 top-0 left-0 bg-white text-black p-4">
+          Pular para o conteúdo principal
+        </a>
+        <main id="main-content" className="relative pb-16">{children}</main>
         <BottomNav />
       </body>
     </html>

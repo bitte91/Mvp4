@@ -25,22 +25,16 @@ const config = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#1B4965", // Azul Petróleo Principal
-          light: "#2A6F97",
-          dark: "#0F2A3B",
-          foreground: "#FFFFFF", // Branco para textos sobre primário
+          DEFAULT: "#2563EB",
+          foreground: "#FFFFFF",
         },
         secondary: {
-          DEFAULT: "#65A30D", // Verde Limão
-          light: "#84CC16",
-          dark: "#4D7C0F",
+          DEFAULT: "#10B981",
           foreground: "#FFFFFF",
         },
         accent: {
-          DEFAULT: "#FFD166", // Amarelo
-          light: "#FFDD80",
-          dark: "#FFC54D",
-          foreground: "#1B4965", // Azul Petróleo para textos sobre accent
+          DEFAULT: "#F59E0B",
+          foreground: "#FFFFFF",
         },
         neutral: {
           100: "#F7F7F7", // Background Principal
@@ -58,7 +52,7 @@ const config = {
           foreground: "#FFFFFF",
         },
         danger: {
-          DEFAULT: "#EF4444",
+          DEFAULT: "#F59E0B",
           foreground: "#FFFFFF",
         },
         muted: {
